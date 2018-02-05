@@ -1,0 +1,197 @@
+
+= SAP BO BI Metadata Connector
+:imagesdir: ./_images
+:toc: macro
+:toclevels: 2
+
+toc::[]
+
+[[overview]]
+== Overview
+SAP BO BI Metadata Connector Connects to the SAP BusinessObjects BI Repository and retrieves metadata of  the Universe and WEBI Reports which are created in Information Design Tool (IDT) and Web Intelligence Tool (WEBI) respectively. This connector performs following operations:
+
+-Get IDT Universes
+-Get IDT Universe Details
+-Get WEBI Documents
+-Get WEBI Document Details
+-Get WEBI Reports of a Document
+
+
+Read through this user guide to understand how to set up and configure a basic flow using the connector. Track feature additions, compatibility, limitations, and API version updates with each release of the connector using the link:/release-notes/SAP BO BI Metadata Connector-release-notes[Connector Release Notes]. Review the connector operations and functionality using the link:/link-to-github.io-or-internal-section[Technical Reference] along side the link:https://www.mulesoft.com/exchange#!/?filters=Salesforce&sortBy=rank[demo applications].
+
+MuleSoft maintains this connector under the link:/mule-user-guide/v/3.8/anypoint-connectors#connector-categories[_Insert Category_] support policy.
+
+[[important-concepts]]
+== Important Concepts
+
+This document assumes that you are familiar with Mule,
+link:/mule-user-guide/v/3.8/anypoint-connectors[Anypoint Connectors], and
+link:/anypoint-studio/v/6[Anypoint Studio]. To increase your familiarity with Studio, consider completing a link:/anypoint-studio/v/6/basic-studio-tutorial[Anypoint Studio Tutorial]. This page requires basic knowledge of link:/mule-user-guide/v/3.8/mule-concepts[Mule Concepts], link:/mule-user-guide/v/3.8/elements-in-a-mule-flow[Elements in a Mule Flow], and link:/mule-user-guide/v/3.8/global-elements[Global Elements].
+
+
+[[requirements]]
+== Hardware and Software Requirements
+
+For hardware and software requirements, visit the link:/release-notes/connector[Connector Release Notes].
+
+[[install]]
+== How to Install
+
+You can install the connector in Anypoint Studio using the instructions in
+link:/getting-started/anypoint-exchange#installing-a-connector-from-anypoint-exchange[Installing a Connector from Anypoint Exchange].
+
+[[upgrading]]
+=== Upgrading from an Older Version
+
+If you’re currently using an older version of the connector, a small popup appears in the bottom right corner of Anypoint Studio with an "Updates Available" message.
+
+. Click the popup and check for available updates. 
+. Click the Connector version checkbox, click *Next*, and follow the instructions provided by the user interface. 
+. *Restart* Studio when prompted. 
+. After restarting, when creating a flow and using the connector, if you have several versions of the connector installed, you may be asked which version you would like to use. Choose the version you would like to use.
+
+Additionally, we recommend that you keep Studio up to date with its latest version.
+
+[[ns-schema]]
+== Connector Namespace and Schema
+
+*Namespace:* `+http://www.mulesoft.org/schema/mule/connector+` +
+*Schema Location:* `+http://www.mulesoft.org/schema/mule/connector/current/mule-connector.xsd+`
+
+[TIP]
+If you are manually coding the Mule application in Studio's XML editor or another text editor, define the namespace and schema location in the header of your *Configuration XML*, inside the `<mule>` tag.
+
+[source, xml,linenums]
+----
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:sapbobi="http://www.mulesoft.org/schema/mule/sapbobi" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/sapbobi http://www.mulesoft.org/schema/mule/sapbobi/current/mule-sapbobi.xsd">
+
+      <!-- put your global configuration elements and flows here -->
+
+</mule>
+----
+
+[[maven]]
+== Maven Dependency Information
+
+For Maven dependency management, include this XML snippet in your `pom.xml` file.
+
+[source,xml,linenums]
+----
+	<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>${jersey.client.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-json</artifactId>
+			<version>${jersey.json.version}</version>
+		</dependency>
+----
+
+[TIP]
+====
+Inside the `<version>` tags, put the desired version number, the word `RELEASE` for the latest release, or `SNAPSHOT` for the latest available version. The available versions are:
+
+* *x.y.z*
+====
+
+[[configure]]
+== How to Configure
+
+Place the connector in your flow as applicable for your use case.
+
+To use the SAP BO BI Metadata connector in your Mule application, you must configure a global <SAP BO BI Metadata connector> element that can be used by the SAP BO BI Metadata connector (read more about  link:/mule-user-guide/v/3.8/global-elements[Global Elements]). The <connector> connector provides the following global configuration(s), requiring the following credentials: *Username*, *Password*,*BaseUrl*
+
+[%header%autowidth.spread]
+|===
+|Field |Description
+|*Username* |Enter the username to log in with.
+|*Password* |Enter the corresponding password.
+|*BaseUrl*|Enter the BAseUrl to connect to CMS
+
+|===
+
+//image:<SAP BOBI Metadata Connector>-global-element-props.png[<SAP BOBI Metadata Connector>-config]
+
+[[operations]]
+== Operations
+
+Outbound, inbound, streaming outbound  +
+
+[NOTE]
+See a full list of operations for any version of the connector link:[here].
+
+
+== Common Use Cases
+
+
+* link:#use-case-1[Configure Connector to print Universe output in Console]
+* link:#use-case-2[Configure Connector to print Document output in console]
+
+
+[use-case-1]
+=== Configure Connector to print universe output in console
+
+image:Usecase1-1.png["Anypoint Studio palette - SAP BO BI Metadata Connector"]
+
+In this usecase the SAP BOBI Metadata Connector connects to the Central Management Service and fetches the Metadata of Universes of IDT
+
+
+
+image:Usecase1-2.png["Anypoint Studio palette - SAP BO BI Metadata Connector"]
+
+
+[use-case-2]
+=== Configure Connector to print Document output in console
+
+image:Usecase2-1.png["Anypoint Studio palette - SAP BO BI Metadata Connector"]
+
+
+In this usecase the SAP BOBI Metadata Connector connects to the Central Management Service and fetches the Metadata of  Documents of WEBI
+
+
+
+Output
+image:Usecase2-2.png["Anypoint Studio palette - SAP BO BI Metadata Connector"]
+ 
+== Connector Performance
+
+To define the pooling profile for the connector manually, access the *Pooling Profile* tab in the applicable global element for the connector.
+
+For background information on pooling, see link:/mule-user-guide/v/3.8/tuning-performance[Tuning Performance].
+
+
+=== Integration Patterns
+////
+optional
+////
+
+=== Best Practices
+////
+optional
+////
+
+
+=== Tips
+////
+optional
+////
+
+
+
+== Resources
+
+* Access the link:/release-notes/<System_Name>-connector-release-notes[SAP BO BI Metadata Connector Release Notes].

@@ -1,0 +1,61 @@
+////
+The following is the approved connector release notes template for documenting MuleSoft Supported Connectors.
+////
+
+= SAP BusinessObjects  Business Intelligence (BO BI)  Metadata  Connector Release Notes
+////
+SAP BO BI Metadata Connector Connects to the SAP BusinessObjects BI Repository and retrieves metadata of  the Universe and WEBI Reports which are created in Information Design Tool (IDT) and Web Intelligence Tool (WEBI) respectively.
+////
+
+Sentences describing the connector's functionality and basic information that applies to all connector versions.
+
+link:/<System_Name>-connector[SAP BO BI Metadata  Connector User Guide]
+////
+Points to the docs.mulesoft pages for documentation on the functional aspects of the connector. e.g.: link:/mule-user-guide/v/3.8/connector-x[Connector X User Guide]
+////
+
+== Version 1.0.0 - 18/01/2018
+////
+<Connector_Version> : Describes the connector version, such as “V2013”, “V4.0”, “V4.0.1-HF2” or whatever used for release]
+<Release_date> : The date on which the connector is released (not when the notes are written, mind you)
+////
+
+=== Version 1.0.0 Compatibility
+
+[%header%autowidth]
+|===
+|Software |Version
+|Mule Runtime |EE 3.8.4 or Higher
+|Anypoint Studio |6.2.4
+|JAVA |7,8
+|===
+
+=== Features
+
+
+• Basic Authentication – Connects to Central Management Service (CMS) through the login operation 
+
+• Get IDT Universes– This operation fetches all the universe metadata created in IDT 
+  The metadata retreived includes the following information ID, CUID, Name, Type, Folder Id of  Universes
+
+• Get IDT Universe Details – This operation fetches metadata of a particular Universe by providing the Universe ID. 
+ The metadata retreived includes the following information  ID,  CUID, Name, Type, Folder Id ,Path,Classes and Objects of a Universe
+
+• Get WEBI Documents - This operation fetches metadata of all the Documents created in WEBI
+  The metadata retreived includes the following information ID, CUID, Name, Description, Folder Id and State of Documents
+
+• Get WEBI Document Details - This operation fetches metadata of a particular Document by providing the Document ID.
+  The metadata retreived includes the following information ID, CUID, Name, Description, Folder Id,path,Updated,Sheduled,CreatedbBy,LastAuthor,Size and  refreshOnOpen of   Document
+
+• Get WEBI Reports of Document –This operation fetches metadata of all the Reports within a Document
+  The metadata retreived includes the following information Id, Name, reference and showDatechanges of every report within that Document
+
+
+=== SAP BO BI Metadata Coneector 1.0.0 Known Issues
+
+
+=== Support Resources
+
+* Learn how to link:/mule-user-guide/v/3.8/installing-connectors[Install Anypoint Connectors] using Anypoint Exchange.
+* Access the link:http://forum.mulesoft.org/mulesoft[MuleSoft Forum] to pose questions and get help from Mule’s broad community of users.
+* To access MuleSoft’s expert support team, link:http://www.mulesoft.com/mule-esb-subscription[subscribe] and log in to MuleSoft’s link:http://www.mulesoft.com/support-login[Customer Portal].
