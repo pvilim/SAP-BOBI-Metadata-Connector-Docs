@@ -194,4 +194,4 @@ optional
 
 == Resources
 
-* Access the link:/release-notes/<System_Name>-connector-release-notes[SAP BO BI Metadata Connector Release Notes].
+* Access the link:https://github.com/InformationAsset/SAP-BOBI-Metadata-Connector-Docs/blob/master/release-notes.adoc-connector-release-notes[SAP BO BI Metadata Connector Release Notes].
