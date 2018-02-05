@@ -1,0 +1,252 @@
+
+:toc:               left
+:toc-title:         Connector Summary
+:toclevels:         2
+:last-update-label!:
+:docinfo:
+:source-highlighter: coderay
+:icons: font
+
+
+= SAP BO BI Metadata Connect Connector API Reference
+
++++
+<h1>SAP BO BI METADATA CONNECTOR</h1>
+SAP BusinessObjects (BO) Business Intelligence offers different tools for reporting and analysis purpose. These tools provide full suite of Business Intelligence reporting solution. The connector allows to fetch the Metadata from the Repository.
+This Connector is used to fetch the Metadata of Universes from Information Design Tool and Metadata of Documents and Reports from Web Intellegence Tool.
++++
+
+*Additional Info*
+[width="50", cols=".<60%,^40%" ]
+|======================
+| Requires Mule Enterprise License |  Yes icon:star[]  {nbsp}
+| Requires Entitlement |  Yes icon:star[]  {nbsp}
+| Mule Version | 3.8.0 or higher
+|======================
+
+
+== Configs
+---
+=== Configuration
+`<sapbobi:config>`
+
+
+`Connection Management` 
+
++++
+This class is used to define Connector Level Configuration Parameters
++++
+
+
+==== Attributes
+[cols=".^20%,.^20%,.^35%,.^20%,^.^5%", options="header"]
+|======================
+| Name | Java Type | Description | Default Value | Required
+|name | +++<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html">String</a>+++ | The name of this configuration. With this name can be later referenced. | | *x*{nbsp}
+| username | +++<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html">String</a>+++ | +++A username is to access the SAP Repository(Central Management Console)+++ |   | *x*{nbsp}
+| password | +++<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html">String</a>+++ | +++A password is to access SAP Repository(Central Management Console)+++ |   | *x*{nbsp}
+| baseurl | +++<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html">String</a>+++ | +++The  Base URL to connect to the SAP Repository(Central Management Console)+++ |   | *x*{nbsp}
+|======================
+
+
+
+== Processors
+
+---
+
+=== Get IDT Universes
+`<sapbobi:get-universes>`
+
+
+
+
++++
+Fetches all the universes in IDT
+This include ID, CUID, Name, Type, Folder Id of a Universe
++++
+
+
+    
+
+==== Attributes
+[cols=".^20%,.^20%,.^35%,.^20%,^.^5%", options="header"]
+|======================
+|Name |Java Type | Description | Default Value | Required
+| config-ref | +++<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html">String</a>+++ | Specify which config to use | |*x*{nbsp}
+
+|======================
+
+==== Returns
+[cols=".^40%,.^60%", options="header"]
+|======================
+|Return Java Type | Description
+|+++<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html">String</a>+++ | +++it returns ID, CUID, Name, Type, Folder Id of a Universe+++
+|======================
+
+
+
+
+---
+
+=== Get IDT Universe Details
+`<sapbobi:get-universe-details>`
+
+
+
+
++++
+Fetches details of a particular Universe by providing the UniverseID
+This includes the ID, CUID, Name, Type, Folder Id ,Path,Classes and of Universes
++++
+
+
+    
+    
+==== Attributes
+[cols=".^20%,.^20%,.^35%,.^20%,^.^5%", options="header"]
+|======================
+|Name |Java Type | Description | Default Value | Required
+| config-ref | +++<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html">String</a>+++ | Specify which config to use | |*x*{nbsp}
+
+
+
+| 
+universeId  | +++<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html">String</a>+++ | +++Need to give valid UniverseID+++ | 9078 | {nbsp}
+
+
+|======================
+
+==== Returns
+[cols=".^40%,.^60%", options="header"]
+|======================
+|Return Java Type | Description
+|+++<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html">String</a>+++ | +++it returns ID, CUID, Name, Type, Folder Id ,Path,Classes and of Universes+++
+|======================
+
+
+
+
+---
+
+=== Get WEBI Documents
+`<sapbobi:get-documents>`
+
+
+
+
++++
+Fetches all the Documents in WEBI
+This includes the ID, CUID, Name, Description, Folder Id and State of Documents
++++
+
+
+    
+
+==== Attributes
+[cols=".^20%,.^20%,.^35%,.^20%,^.^5%", options="header"]
+|======================
+|Name |Java Type | Description | Default Value | Required
+| config-ref | +++<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html">String</a>+++ | Specify which config to use | |*x*{nbsp}
+
+|======================
+
+==== Returns
+[cols=".^40%,.^60%", options="header"]
+|======================
+|Return Java Type | Description
+|+++<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html">String</a>+++ | +++it returns ID, CUID, Name, Description, Folder Id and State of Document+++
+|======================
+
+
+
+
+---
+
+=== Get WEBI Document Details
+`<sapbobi:get-document-details>`
+
+
+
+
++++
+Fetches details of a particular Document by providing the Document ID.
+This includes the ID, CUID, Name, Description, FolderId,path,Updated,Sheduled,CreatedbBy,LastAuthor,Size and refreshOnOpen of a Document
++++
+
+
+    
+    
+==== Attributes
+[cols=".^20%,.^20%,.^35%,.^20%,^.^5%", options="header"]
+|======================
+|Name |Java Type | Description | Default Value | Required
+| config-ref | +++<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html">String</a>+++ | Specify which config to use | |*x*{nbsp}
+
+
+
+| 
+documentId  | +++<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html">String</a>+++ | +++Need to provide valid DocumentID+++ | 6086 | {nbsp}
+
+
+|======================
+
+==== Returns
+[cols=".^40%,.^60%", options="header"]
+|======================
+|Return Java Type | Description
+|+++<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html">String</a>+++ | +++it returns ID, CUID, Name, Description, Folder Id,path,Updated,Sheduled,CreatedbBy,LastAuthor,Size and refreshOnOpen of a Document+++
+|======================
+
+
+
+
+---
+
+=== Get WEBI Reports of Document
+`<sapbobi:get-document-report-details>`
+
+
+
+
++++
+Fetches details of all the Reports in a Document
+This includes the Id,Name,reference and showDatechanges of every report in that Document
++++
+
+
+    
+    
+==== Attributes
+[cols=".^20%,.^20%,.^35%,.^20%,^.^5%", options="header"]
+|======================
+|Name |Java Type | Description | Default Value | Required
+| config-ref | +++<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html">String</a>+++ | Specify which config to use | |*x*{nbsp}
+
+
+
+| 
+documentaId  | +++<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html">String</a>+++ | +++Need to provide valid DocumentID+++ | 6086 | {nbsp}
+
+
+|======================
+
+==== Returns
+[cols=".^40%,.^60%", options="header"]
+|======================
+|Return Java Type | Description
+|+++<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html">String</a>+++ | +++it returns Id,Name,reference and showDatechanges of every report in that Document+++
+|======================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
